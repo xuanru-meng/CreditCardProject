@@ -1,6 +1,7 @@
 package com.shepherdmoney.interviewproject.model;
 
 import jakarta.persistence.*;
+import java.util.HashSet;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -24,9 +25,13 @@ public class User {
 
     private String email;
 
-    // TODO: User's credit card
-    // HINT: A user can have one or more, or none at all. We want to be able to query credit cards by user
-    //       and user by a credit card.
+    //write the constructor
+    public User(String firstName, String lastName, String email) {
+        this.name = firstName + " " + lastName;
+        this.email = email;
+    }
+
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<CreditCard> creditCards;
     
@@ -44,4 +49,5 @@ public class User {
             creditCard.setUser(null);
         }
     }
+
 }
